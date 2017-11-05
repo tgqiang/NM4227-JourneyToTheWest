@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class PhoneManager : MonoBehaviour {
 
+	[Header("Starting Text Prompt")]
+	public GameObject m_PromptTexts;
+	bool isCurrentlyAtTutorial;
+
 	[Header("Messages and Replies")]
 	public string[] m_GirlfriendMessages;
 	public string[][] m_PlayerReplies;
@@ -213,11 +217,22 @@ public class PhoneManager : MonoBehaviour {
 
 	IEnumerator AnimatePhoneInterfaceCoroutine() {
 		if (m_IsMobilePhoneActive) {
+
+			if (isCurrentlyAtTutorial) {
+				isCurrentlyAtTutorial = false;
+				m_PromptTexts.SetActive (false);
+			}
+
 			m_PhoneButton.GetComponent<Image> ().sprite = m_PhoneInactiveSprite;
 			(m_PhoneButton.transform as RectTransform).sizeDelta = m_PhoneInactiveButtonSize;
 			m_IsMobilePhoneActive = false;
 			iTween.MoveTo (m_PhoneInterface, m_InactivePosition, m_PhoneAnimationDuration);
 		} else {
+			
+			if (isCurrentlyAtTutorial) {
+				m_PromptTexts.SetActive (true);
+			}
+
 			m_PhoneButton.GetComponent<Image> ().sprite = m_PhoneActiveSprite;
 			(m_PhoneButton.transform as RectTransform).sizeDelta = m_PhoneActiveButtonSize;
 			m_IsMobilePhoneActive = true;
@@ -365,7 +380,9 @@ public class PhoneManager : MonoBehaviour {
 	}
 
 
-	public void ReceiveTextFromGF() {
+	public void ReceiveTextFromGF(bool isTutorial = false) {
+		isCurrentlyAtTutorial = isTutorial;
+
 		if (canReceiveMessage) {
 			if (numResponses < m_MaxResponsesNeeded) {
 				canReceiveMessage = false;

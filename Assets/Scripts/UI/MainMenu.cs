@@ -143,7 +143,7 @@ public class MainMenu : MonoBehaviour {
 		m_PhoneScript.InitializeFirstMessageCallback(HandleClearFirstMessage);
 
 		yield return new WaitForSeconds (1f);
-		m_PhoneScript.ReceiveTextFromGF ();
+		m_PhoneScript.ReceiveTextFromGF (true);
 	}
 
 
