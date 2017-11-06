@@ -128,11 +128,11 @@ public class PhoneManager : MonoBehaviour {
 						m_HeaderBackground.color = m_FlashingColor [0];
 					}
 
-					m_RelationshipMeter.value = Mathf.Max (m_RelationshipMeter.value - m_MeterDepletionPerSecond * deltaTime, 0);
+					//m_RelationshipMeter.value = Mathf.Max (m_RelationshipMeter.value - m_MeterDepletionPerSecond * deltaTime, 0);
 
 					if (timeTillResponse > m_MaxMessageIgnoreDuration) {
-						float ratio = ComputeRatioFromRelationshipMeter ();
-						UpdateVignetteEffect (ratio);
+						//float ratio = ComputeRatioFromRelationshipMeter ();
+						//UpdateVignetteEffect (ratio);
 					}
 				}
 			}
