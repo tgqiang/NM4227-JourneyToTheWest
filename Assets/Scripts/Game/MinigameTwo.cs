@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MinigameTwo : MonoBehaviour {
+
+	[Header("Targets")]
+	public GameObject m_BagPivot;
+	public Sprite m_BagNormalSprite;
 
 	[Header("Text Trigger")]
 	public PhoneManager m_PhoneScript;
@@ -42,6 +47,14 @@ public class MinigameTwo : MonoBehaviour {
 	public float m_MaximumDelayBeforePassengerLiftsFoot;	// the time delay between the moment a passenger puts
 															// down his/her foot, and the moment another passenger
 															// will lift up his/her foot
+	[Header("Audio")]
+	public AudioClip m_CountdownClip;
+	public AudioClip m_MinigameStartClip;
+	public AudioClip m_SuccessClip;
+	public AudioClip m_FailureClip;
+
+	AudioSource m_AudioSource;
+
 	bool m_IsInPlay;
 	bool[] isItemRetrievedFromSeat;
 	bool isLiftingFoot = false;
@@ -60,11 +73,17 @@ public class MinigameTwo : MonoBehaviour {
 	ReturnFlowToGameState callbackToGameState;
 
 
+	void Awake() {
+		m_AudioSource = EventSystem.current.GetComponent<AudioSource> ();
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		isItemRetrievedFromSeat = new bool[MAX_PASSENGERS_IN_TRAIN];
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		if (m_IsInPlay) {
@@ -240,6 +259,7 @@ public class MinigameTwo : MonoBehaviour {
 		canAcceptInput = false;
 		toResumeFlow = false;
 
+		m_AudioSource.PlayOneShot (m_SuccessClip);
 		isItemRetrievedFromSeat [currentPassengerLiftingFoot] = true;
 		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").gameObject.GetComponent<Image> ().sprite = m_ItemRetrievedSprite;
 		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").gameObject.GetComponent<Image> ().color = new Color(1f, 1f, 1f, .5f);
@@ -257,6 +277,7 @@ public class MinigameTwo : MonoBehaviour {
 		canAcceptInput = false;
 		toResumeFlow = false;
 
+		m_AudioSource.PlayOneShot (m_FailureClip);
 		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").Find ("Key").gameObject.GetComponent<Image> ().color = Color.red;
 		iTween.PunchPosition (m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").Find ("Key").gameObject, new Vector2 (0f, 5f), .5f);
 
@@ -270,17 +291,21 @@ public class MinigameTwo : MonoBehaviour {
 	IEnumerator AnimateCountdownCoroutine() {
 		m_GameInstructionsPanel.SetActive (false);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "2";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "1";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_MinigameStartClip, .7f);
 		m_GameInstructionsModal.SetActive (false);
 
 		yield return new WaitForSeconds (m_TimeDelayAfterCountdown);
@@ -301,6 +326,8 @@ public class MinigameTwo : MonoBehaviour {
 		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
 
 		m_GamePanel.SetActive (false);
+		(m_BagPivot.transform as RectTransform).localRotation = Quaternion.Euler (Vector3.zero);
+		m_BagPivot.transform.Find ("Image").gameObject.GetComponent<Image> ().sprite = m_BagNormalSprite;
 
 		callbackToGameState();
 

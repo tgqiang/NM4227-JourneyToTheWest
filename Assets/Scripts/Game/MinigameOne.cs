@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MinigameOne : MonoBehaviour {
@@ -56,11 +57,21 @@ public class MinigameOne : MonoBehaviour {
 	int numCorrectAttempts = 0;				// need to clear sequence of m_NumSeats x combo strings to clear game
 
 	[Header("Audio")]
-	public AudioManager m_AudioPlayer;
+	public AudioClip m_CountdownClip;
+	public AudioClip m_MinigameStartClip;
+	public AudioClip m_SuccessClip;
+	public AudioClip m_FailureClip;
+
+	AudioSource m_AudioSource;
 
 	// Callback to GameState
 	public delegate void ReturnFlowToGameState();
 	ReturnFlowToGameState callbackToGameState;
+
+
+	void Awake() {
+		m_AudioSource = EventSystem.current.GetComponent<AudioSource> ();
+	}
 
 
 	void Start() {
@@ -223,6 +234,7 @@ public class MinigameOne : MonoBehaviour {
 		comboStringIndex = 0;
 		numCorrectAttempts += 1;
 		(m_Player.transform as RectTransform).anchoredPosition += stepDistance;
+		m_AudioSource.PlayOneShot (m_SuccessClip);
 		m_FeedbackText.text = "Clear!";
 		iTween.ShakePosition (m_FeedbackText.gameObject, new Vector3(0f, 50f, 0f), 0.2f);
 
@@ -231,7 +243,6 @@ public class MinigameOne : MonoBehaviour {
 		if (numCorrectAttempts == m_NumSeats) {
 			EndGame ();
 		} else {
-			m_FeedbackText.color = Color.black;
 			m_FeedbackText.text = "Press the keys from left to right to get to the empty seat!";
 			GenerateComboString (numCorrectAttempts + 1);
 			canReceiveInput = true;
@@ -243,17 +254,21 @@ public class MinigameOne : MonoBehaviour {
 	IEnumerator AnimateCountdownCoroutine() {
 		m_GameInstructionsPanel.SetActive (false);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "2";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "1";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_MinigameStartClip, .7f);
 		m_GameInstructionsModal.SetActive (false);
 
 		m_IsInPlay = true;
@@ -269,6 +284,7 @@ public class MinigameOne : MonoBehaviour {
 
 	IEnumerator ShowWrongInputFeedbackCoroutine() {
 		canReceiveInput = false;
+		m_AudioSource.PlayOneShot (m_FailureClip);
 		m_CompetingPassengerMoving.SetActive (false);
 		m_CompetingPassenger.SetActive (true);
 		m_FeedbackText.text = "Oh no, someone has taken the seat! Moving to the next carriage to find a seat...";
@@ -331,7 +347,6 @@ public class MinigameOne : MonoBehaviour {
 
 	IEnumerator MoveBackToMainGameCoroutine() {
 		yield return m_CinematicScript.DeactivateCinematicEffectCoroutine ();
-		//m_AudioPlayer.PlayTrainAmbient ();
 		callbackToGameState();
 	}
 

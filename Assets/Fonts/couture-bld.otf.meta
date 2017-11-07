@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ddbc698bde494f6498e0b61c59b83650
+timeCreated: 1509981978
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Couture
+  fontNames:
+  - Couture
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

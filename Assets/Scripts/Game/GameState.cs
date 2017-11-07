@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -69,6 +70,19 @@ public class GameState : MonoBehaviour {
 	[Header("Credits Panel")]
 	public GameObject m_CreditsPanel;
 	public float m_CreditsPersistenceDuration;
+
+	[Header("Audio")]
+	public BGMManager m_BGMPlayer;
+	public AudioClip m_BusArrivalClip;
+	public AudioClip m_PlayerFootstepsClip;
+	public AudioClip m_GFDialogueClip;
+
+	AudioSource m_AudioSource;
+
+
+	void Awake() {
+		m_AudioSource = EventSystem.current.GetComponent<AudioSource> ();
+	}
 
 
 	void Update() {
@@ -251,19 +265,22 @@ public class GameState : MonoBehaviour {
 
 
 	IEnumerator BoardBusCoroutine() {
+		m_AudioSource.PlayOneShot (m_BusArrivalClip);
 		iTween.ScaleTo (m_BusAtBusStop, Vector3.one, m_BusArrivingDuration);
 		yield return new WaitForSeconds (m_BusArrivingDuration);
 
-		iTween.MoveTo (m_PlayerAtBusStop, m_PlayerAtBusStopMoveToPosition, m_BusBoardingCutsceneDuration);
-		yield return new WaitForSeconds (m_BusBoardingCutsceneDuration + 0.5f);
+		m_PlayerAtBusStop.GetComponent<Animator> ().SetBool ("Walking", true);
+		m_AudioSource.PlayOneShot (m_PlayerFootstepsClip);
+		iTween.MoveTo (m_PlayerAtBusStop, iTween.Hash ("position", m_PlayerAtBusStopMoveToPosition, "time", m_BusBoardingCutsceneDuration, "easetype", iTween.EaseType.linear));
+		yield return new WaitForSeconds (m_BusBoardingCutsceneDuration + 0.1f);
+		m_PlayerAtBusStop.GetComponent<Animator> ().SetBool ("Walking", false);
 
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
 
-		// TODO: settle player down in the bus
-		// INSERT CODE HERE //
 		m_BusBoardingPanel.SetActive (false);
 		m_InBusPanel.SetActive (true);
+		m_BGMPlayer.PlayBusAmbient ();
 
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 1.5f);
@@ -273,6 +290,8 @@ public class GameState : MonoBehaviour {
 
 	
 	IEnumerator ShowEndingCoroutine() {
+		m_BGMPlayer.StopPlayer ();
+
 		yield return m_CinematicScript.ActivateCinematicEffectCoroutine ();
 
 		m_HUD.SetActive (false);
@@ -283,8 +302,11 @@ public class GameState : MonoBehaviour {
 
 		yield return new WaitForSeconds (m_TimeDelayBeforePlayerMovement);
 
-		iTween.MoveTo (m_Player, m_PlayerMoveToPosition, m_PlayerMoveToDuration);
+		m_AudioSource.PlayOneShot (m_PlayerFootstepsClip);
+		//iTween.MoveTo (m_Player, iTween.Hash ("position", m_PlayerMoveToPosition, "time", m_PlayerMoveToDuration, "easetype", iTween.EaseType.linear));
+		m_Player.GetComponent<Animator> ().SetBool ("Walking", true);
 		yield return new WaitForSeconds (m_PlayerMoveToDuration + .5f);
+		m_Player.GetComponent<Animator> ().SetBool ("Walking", false);
 
 		yield return EmulateDialogueCoroutine ();
 	}
@@ -298,6 +320,7 @@ public class GameState : MonoBehaviour {
 			UpdateGFSpeechBubble ("Your SMS replies were rather rude... I hope we are going to be alright together babe...");
 		}
 
+		m_AudioSource.PlayOneShot (m_GFDialogueClip);
 		m_GirlfriendSpeechBubble.SetActive (true);
 		yield return new WaitForSeconds (m_DialogueSwapInterval);
 
@@ -306,6 +329,7 @@ public class GameState : MonoBehaviour {
 
 		// GF speaks
 		UpdateGFSpeechBubble("Do you still love me?");
+		m_AudioSource.PlayOneShot (m_GFDialogueClip);
 		m_GirlfriendSpeechBubble.SetActive (true);
 		yield return new WaitForSeconds (m_DialogueSwapInterval);
 
@@ -333,6 +357,7 @@ public class GameState : MonoBehaviour {
 
 		m_GirlfriendMeetingPanel.SetActive (false);
 		m_EndingPanel.SetActive (true);
+		m_BGMPlayer.PlayEndingSong ();
 
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 2f);

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ecdac3054dafbe44b8abe1da393d3523
+timeCreated: 1509976056
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Subway Ticker Grid
+  fontNames:
+  - Subway Ticker Grid
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

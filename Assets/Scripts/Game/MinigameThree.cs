@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MinigameThree : MonoBehaviour {
+
+	[Header("Targets")]
+	public GameObject m_PlayerNormal;
+	public GameObject m_PlayerFall;
 
 	[Header("Text Trigger")]
 	public PhoneManager m_PhoneScript;
@@ -54,9 +59,23 @@ public class MinigameThree : MonoBehaviour {
 	public float m_RotationIncrement;
 	public float[] m_RotationThresholds;
 
+	[Header("Audio")]
+	public AudioClip m_CountdownClip;
+	public AudioClip m_MinigameStartClip;
+	public AudioClip m_SuccessClip;
+	public AudioClip m_FailureClip;
+
+	public AudioSource m_TimerAudioSource;
+	AudioSource m_AudioSource;
+
 	// Callback to GameState
 	public delegate void ReturnFlowToGameState();
 	ReturnFlowToGameState callbackToGameState;
+
+
+	void Awake() {
+		m_AudioSource = EventSystem.current.GetComponent<AudioSource> ();
+	}
 
 
 	// Update is called once per frame
@@ -153,7 +172,7 @@ public class MinigameThree : MonoBehaviour {
 		} else if (sliderValue < m_SliderWarningValues [0] ||
 		           sliderValue > m_SliderWarningValues [1]) {
 			m_MinigameUI.GetComponent<Image> ().color = new Color (1f, 165f/255f, 0f);
-			m_PromptText.color = Color.black;
+			m_PromptText.color = Color.yellow;
 			m_PromptText.text = "Whoa, watch out!";
 		} else {
 			m_MinigameUI.GetComponent<Image> ().color = Color.white * 150f/255f;
@@ -182,23 +201,28 @@ public class MinigameThree : MonoBehaviour {
 	IEnumerator AnimateCountdownCoroutine() {
 		m_GameInstructionsPanel.SetActive (false);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "2";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_CountdownClip, .7f);
 		m_CountdownText.GetComponent<Text> ().text = "1";
 		iTween.PunchScale (m_CountdownText, Vector3.one * 2f, .9f);
 		yield return new WaitForSeconds (1f);
 
+		m_AudioSource.PlayOneShot (m_MinigameStartClip, .7f);
 		m_GameInstructionsModal.SetActive (false);
 
 		yield return new WaitForSeconds (m_TimeDelayAfterCountdown);
 
 		m_IsInPlay = true;
 		m_Timer.SetActive (true);
+		m_TimerAudioSource.Play ();
 		toUpdateTimer = true;
 		m_Ball.gravityScale = 5f;
 	}
@@ -206,16 +230,23 @@ public class MinigameThree : MonoBehaviour {
 
 	IEnumerator RestartGameCoroutine() {
 		toUpdateTimer = false;
+		m_TimerAudioSource.Stop ();
 		timeElapsed = 0;
 
+		m_PlayerNormal.SetActive (false);
+		m_PlayerFall.SetActive (true);
+		m_AudioSource.PlayOneShot (m_FailureClip);
 		m_MinigameUI.GetComponent<Image> ().color = Color.red;
-		m_PromptText.text = "You fell off your seat!";
-		m_PromptText.color = Color.black;
+		m_PromptText.text = "You fell flat on your face!";
+		m_PromptText.color = Color.red;
 
 		yield return new WaitForSeconds (m_TimeDelayBeforeGameRestart);
 
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
 		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
+
+		m_PlayerNormal.SetActive (true);
+		m_PlayerFall.SetActive (false);
 
 		m_MinigameUI.GetComponent<Image> ().color = Color.white * 150f/255f;
 		m_PromptText.text = "Use 'A' and 'D' keys to bring the indicator to the center for at least 10 seconds!";
@@ -228,15 +259,18 @@ public class MinigameThree : MonoBehaviour {
 
 		m_Timer.SetActive (true);
 		toUpdateTimer = true;
+		m_TimerAudioSource.Play ();
 	}
 
 
 	IEnumerator ReturnToMainGameCoroutine() {
 		m_IsInPlay = false;
 		toUpdateTimer = false;
+		m_TimerAudioSource.Stop ();
+		m_AudioSource.PlayOneShot (m_SuccessClip);
 		m_MinigameUI.GetComponent<Image> ().color = Color.green;
 		m_PromptText.text = "You stayed in your seat!";
-		m_PromptText.color = Color.black;
+		m_PromptText.color = Color.green;
 
 		yield return new WaitForSeconds (m_TimeDelayBeforeTransitToGameEnd);
 
@@ -244,19 +278,6 @@ public class MinigameThree : MonoBehaviour {
 		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
 
 		m_GamePanel.SetActive (false);
-		// TODO: bring player to cutscene here
-		// INSERT CODE HERE //
-
-		/*
-		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
-		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
-
-		// TODO: bring player to cutscene here
-		// INSERT CODE HERE //
-
-		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
-		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
-		*/
 
 		callbackToGameState ();
 	}
