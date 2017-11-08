@@ -76,6 +76,7 @@ public class MinigameOne : MonoBehaviour {
 
 	void Start() {
 		stepDistance = ((m_VacantSeat.transform as RectTransform).anchoredPosition - (m_Player.transform as RectTransform).anchoredPosition) / m_NumSeats;
+		stepDistance.y = 0;
 		competingStepDistance = stepDistance * m_NumSeats / m_NumStepsForCompetingPassengerToReachSeats;
 	}
 

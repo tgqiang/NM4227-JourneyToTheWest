@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c11966620489e254caf3d67b46c54e40
-timeCreated: 1510050813
+timeCreated: 1510115588
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3632
+        y: 3600
         width: 600
         height: 600
       alignment: 0
@@ -128,7 +128,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3032
+        y: 3000
         width: 600
         height: 600
       alignment: 0
@@ -142,7 +142,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
-        y: 3032
+        y: 3000
         width: 600
         height: 600
       alignment: 0
@@ -156,7 +156,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2432
+        y: 2400
         width: 600
         height: 600
       alignment: 0
@@ -169,8 +169,8 @@ TextureImporter:
       name: DAVID_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1832
+        x: 600
+        y: 2400
         width: 600
         height: 600
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: DAVID_5
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1832
+        x: 0
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -197,8 +197,8 @@ TextureImporter:
       name: DAVID_6
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1832
+        x: 600
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -211,8 +211,8 @@ TextureImporter:
       name: DAVID_7
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 1832
+        x: 1200
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -225,8 +225,8 @@ TextureImporter:
       name: DAVID_8
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 1832
+        x: 1800
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -239,8 +239,8 @@ TextureImporter:
       name: DAVID_9
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 1832
+        x: 2400
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -253,8 +253,8 @@ TextureImporter:
       name: DAVID_10
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 1832
+        x: 3000
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -267,8 +267,8 @@ TextureImporter:
       name: DAVID_11
       rect:
         serializedVersion: 2
-        x: 4200
-        y: 1832
+        x: 3600
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -281,8 +281,8 @@ TextureImporter:
       name: DAVID_12
       rect:
         serializedVersion: 2
-        x: 4800
-        y: 1832
+        x: 4200
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -295,8 +295,8 @@ TextureImporter:
       name: DAVID_13
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 1832
+        x: 4800
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -309,8 +309,8 @@ TextureImporter:
       name: DAVID_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1232
+        x: 5400
+        y: 1800
         width: 600
         height: 600
       alignment: 0
@@ -323,8 +323,8 @@ TextureImporter:
       name: DAVID_15
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1232
+        x: 0
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: DAVID_16
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1232
+        x: 600
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -351,8 +351,8 @@ TextureImporter:
       name: DAVID_17
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 1232
+        x: 1200
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -365,8 +365,8 @@ TextureImporter:
       name: DAVID_18
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 1232
+        x: 1800
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -379,8 +379,8 @@ TextureImporter:
       name: DAVID_19
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 1232
+        x: 2400
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -393,8 +393,8 @@ TextureImporter:
       name: DAVID_20
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 1232
+        x: 3000
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -407,8 +407,8 @@ TextureImporter:
       name: DAVID_21
       rect:
         serializedVersion: 2
-        x: 4200
-        y: 1232
+        x: 3600
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -421,8 +421,8 @@ TextureImporter:
       name: DAVID_22
       rect:
         serializedVersion: 2
-        x: 4800
-        y: 1232
+        x: 4200
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -435,8 +435,8 @@ TextureImporter:
       name: DAVID_23
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 1232
+        x: 4800
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -449,8 +449,8 @@ TextureImporter:
       name: DAVID_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 632
+        x: 5400
+        y: 1200
         width: 600
         height: 600
       alignment: 0
@@ -464,7 +464,21 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 600
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DAVID_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
         width: 600
         height: 600
       alignment: 0

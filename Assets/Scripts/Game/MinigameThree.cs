@@ -269,7 +269,7 @@ public class MinigameThree : MonoBehaviour {
 		m_TimerAudioSource.Stop ();
 		m_AudioSource.PlayOneShot (m_SuccessClip);
 		m_MinigameUI.GetComponent<Image> ().color = Color.green;
-		m_PromptText.text = "You stayed in your seat!";
+		m_PromptText.text = "You kept your balance!";
 		m_PromptText.color = Color.green;
 
 		yield return new WaitForSeconds (m_TimeDelayBeforeTransitToGameEnd);

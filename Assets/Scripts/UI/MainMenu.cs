@@ -150,7 +150,10 @@ public class MainMenu : MonoBehaviour {
 	IEnumerator AnimateDoorsCoroutine() {
 		m_MainMenuPanel.SetActive (false);
 
-		Hashtable hashtableLeftDoor = iTween.Hash ("position", -1 * m_DoorOpenPosition,
+		Vector3 leftDoorOpenPosition = m_DoorOpenPosition;
+		leftDoorOpenPosition.x *= -1;
+
+		Hashtable hashtableLeftDoor = iTween.Hash ("position", leftDoorOpenPosition,
 			                              "time", m_TrainDoorsOpenCloseDuration,
 			                              "easetype", "easeInOutQuart");
 		Hashtable hashtableRightDoor = iTween.Hash ("position", m_DoorOpenPosition,
@@ -170,7 +173,10 @@ public class MainMenu : MonoBehaviour {
 		// Delay door closing for awhile to match the beeping sound effect
 		yield return new WaitForSeconds (2f);
 
-		Hashtable hashtableLeftDoor = iTween.Hash ("position", -1 * m_DoorClosePosition,
+		Vector3 leftDoorClosePosition = m_DoorClosePosition;
+		leftDoorClosePosition.x *= -1;
+
+		Hashtable hashtableLeftDoor = iTween.Hash ("position", leftDoorClosePosition,
 												   "time", m_TrainDoorsOpenCloseDuration,
 												   "easetype", "easeInOutQuart");
 		Hashtable hashtableRightDoor = iTween.Hash ("position", m_DoorClosePosition,

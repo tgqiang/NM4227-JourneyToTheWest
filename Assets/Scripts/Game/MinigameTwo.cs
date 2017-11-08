@@ -17,7 +17,7 @@ public class MinigameTwo : MonoBehaviour {
 
 	[Header("Sprite references")]
 	public Sprite[] m_KeySprites;			// 'A' & 'D' button sprites
-	public Sprite m_ItemRetrievedSprite;
+	public Sprite[] m_ItemRetrievedSprite;
 
 	[Header("Minigame Two Instructions Modal & Countdown")]
 	public GameObject m_GameInstructionsModal;
@@ -261,7 +261,7 @@ public class MinigameTwo : MonoBehaviour {
 
 		m_AudioSource.PlayOneShot (m_SuccessClip);
 		isItemRetrievedFromSeat [currentPassengerLiftingFoot] = true;
-		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").gameObject.GetComponent<Image> ().sprite = m_ItemRetrievedSprite;
+		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").gameObject.GetComponent<Image> ().sprite = m_ItemRetrievedSprite [currentPassengerLiftingFoot];
 		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").gameObject.GetComponent<Image> ().color = new Color(1f, 1f, 1f, .5f);
 		m_Passengers [currentPassengerLiftingFoot].GetComponent<Image> ().color = new Color(1f, 1f, 1f, .5f);
 		m_Passengers [currentPassengerLiftingFoot].transform.Find ("Item").Find ("Key").gameObject.GetComponent<Image> ().color = Color.green;
