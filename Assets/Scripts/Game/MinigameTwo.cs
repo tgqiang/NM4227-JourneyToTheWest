@@ -154,13 +154,10 @@ public class MinigameTwo : MonoBehaviour {
 	}
 
 
-	// NOTE: might need revisions depending on "grading scheme"
-	// e.g. whether to make passenger put foot down upon any wrong key,
-	// or just ignore all wrong inputs and only consume the
-	// correct input to retrieve item from below the passenger's feet
+	// In this implementation, passenger will put foot down upon any wrong key.
 	void CheckForInputMatch() {
 		char requiredKey = (currentPassengerLiftingFoot < 4) ? 'A' : 'D';	// 'A' key for left side (indices 0~3),
-		// 'D' for right side (indices 4~7)
+																			// 'D' for right side (indices 4~7)
 		bool isAKeyPressed = Input.GetKeyDown (KeyCode.A);
 		bool isDKeyPressed = Input.GetKeyDown (KeyCode.D);
 

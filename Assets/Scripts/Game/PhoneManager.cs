@@ -21,12 +21,37 @@ public class PhoneManager : MonoBehaviour {
 	public GameObject m_PlayerReplyListRoot;
 	public GameObject m_PlayerReplyPrefab;
 
-	int[] answer = {0, 1, 0, 0, 1, 2, 1, 0, 2, 2, 1, 1};
+	int[] answer = {0, 1, 0, 0, 0, 0, 1, 0, 2, 2, 1, 1};
+	int[] playerReplyIndices = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 	int score = 0;
 
 	public int Score {
 		get {
 			return score;
+		}
+	}
+
+	public string[] GFMessageStrings {
+		get {
+			return m_GirlfriendMessages;
+		}
+	}
+
+	public string[][] PlayerReplyStrings {
+		get {
+			return m_PlayerReplies;
+		}
+	}
+
+	public int[] AnswerIndices {
+		get {
+			return answer;
+		}
+	}
+
+	public int[] PlayerReplyIndices {
+		get {
+			return playerReplyIndices;
 		}
 	}
 
@@ -103,7 +128,7 @@ public class PhoneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vignetteOffset = m_MaxMessageIgnoreDuration * (m_MeterDepletionPerSecond);
-		m_FlashingColor = new Color[] { Color.green, Color.blue };
+		m_FlashingColor = new Color[] { Color.white, Color.white };
 		m_PhoneNotification = GetComponent<AudioSource> ();
 
 		InitializePlayerReplies ();
@@ -142,42 +167,42 @@ public class PhoneManager : MonoBehaviour {
 
 	void InitializePlayerReplies() {
 		m_PlayerReplies = new string[][] {
-			new string[] {"Hey, can't wait to see you too! I'm on the mrt at Pasir Ris now.",
-						  "What you mean? We just talk yesterday??",
-						  "You want McSpicy? I heard got offer leh"},
-			new string[] {"Lol okay",
-						  "I've missed you too!... Your love and support has helped me cope babe.",
-						  "You are so lame haha"},
-			new string[] {"Yes I'm hurrying!! That's so sweet, tell her I'm coming",
-						  "Uh u know how SMRT is, can't get any faster than this",
-						  "Huh, I don't like her cooking leh :(..."},
-			new string[] {"Didn't get to see you these few weeks, makes me very sad!! Not fun at all",
-						  "Super shag... Somemore you stay so far...",
-						  "Like BMT lor"},
-			new string[] {"A car maybe? lol driving much faster than mrt. you live v far leh",
-						  "Ooo I dont know! Either way, I know I'll love it since it's from you ;)",
-						  "lol what"},
-			new string[] {"lol ok, I too busy to miss you leh",
-						  "What to do... BMT is lidat one",
-						  "I'm so sorry babe. I really really wish I could be there for you!"},
-			new string[] {"Too busy lah",
-						  "oh babe I'm so sorry I was busy. Hope you are doing well, I can't wait to catch up with you my love.",
-						  "I thought we talked ytd? Still got things to say meh?"},
-			new string[] {"It really hurts. The balm I used in camp cannot beat your daily massages!",
-						  "It really hurts. Ltr massage for me ok",
-						  "Nothing one la"},
-			new string[] {"You won't understand one la...",
-						  "Didn't really wanna hear your nagging. Like my mother leh you",
-						  "I really wanted to call you but it was too late by then. I'll tell you more later"},
-			new string[] {"Maybe you should find another boyfriend who's not in army then. lol",
-						  "Seeing you too much makes me annoyed anyway lol!",
-						  "I have no choice baby, let's get through this tough period together!"},
+			new string[] {"Hey babe! Tons of things happened during BMT, but I'm okay. Tell you about it later.",
+						  "Hey babe. A lot of things happened... BMT went quite badly actually.",
+						  "Like that lor. Army still goes on right?? Life sucks."},
+			new string[] {"Yeah, I didn't really want to talk about it over the phone. I thought you wouldn't understand.",
+						  "Haha well, I'll tell you later. It was pretty hard to explain it over the phone",
+						  "Say already you also cannot help right"},
+			new string[] {"Yeah I guess I didn't want you to worry. Anyway, I feel better when I talk to you over the phone. It's like I can pretend I'm not in army for five minutes.",
+						  "Can we not talk about this? I just really want to not think about anything and rest. Army's tough enough and you have to keep asking difficult questions.",
+						  "What my dad told you?? How did you guys even meet lol."},
+			new string[] {"Yeah I understand. Thanks babe :-) I feel like it's so difficult to find people who care in army.",
+						  "Yeah can we just talk about something else?",
+						  "Ok i get it"},
+			new string[] {"I feel like it's hard to make friends here sometimes. But it's okay I guess, just need more time maybe!",
+						  "You won't understand la, you also no need to go army.",
+						  "lol whut, you k not?"},
+			new string[] {"Me too!!!! :(",
+						  "Yeah same. I totally get why people say being in army and having a girlfriend at the same time is tough.",
+						  "You have friends in uni still lonely??"},
+			new string[] {"Yeah, I guess so. Doesn't seem to change anything though. I still feel like we're living separate lives.",
+						  "Yeah :-) That helps, surprisingly haha. Like I'm not alone in this. Our love will win right!",
+						  "My wrist hurts.... And this mrt ride is taking forever omg why do you live so far"},
+			new string[] {"Haha ok, don't worry ok? Anyway, I'm reaching soon!",
+						  "Yeah...... But nothing will change still. I guess that's really what's important for me.",
+						  "Actually maybe next time we could meet somewhere more central? Pasir Ris to Jookoon is just TOOOO FAR"},
+			new string[] {"Nothing much to talk about la. Just like that lor.",
+						  "Ya ok.",
+						  "Yeah I really need a good talk and a listening ear :'("},
+			new string[] {"Maybe you should find another boyfriend who's not in army then. haha kidding........?",
+						  "Nah. What's for dinner??",
+						  "Yeah, but I feel better when I talk to you!!"},
 			new string[] {"You better make sure the food is warm when I arrive",
-						  "Yes I am! I'm so sorry to keep your family waiting, I am reaching soon babe.",
-						  "I don't really want to eat anymore urgh."},
+						  "Yes! So hungry.. Can't wait to see you too!",
+						  "Not really hungry actually."},
 			new string[] {"Coming. Stop rushing me lah",
 						  "Racing to your place at the speed of light!!! I'm so excited to see your fam too",
-						  "I'm in army lol"}
+						  "I'm in a constant state of despair lol"}
 		};
 	}
 
@@ -292,6 +317,8 @@ public class PhoneManager : MonoBehaviour {
 	void UpdateMessageSentOnInterface(int option) {
 		// Hide the reply options to prevent player from spamming
 		HideReplyOptions ();
+
+		playerReplyIndices[playerReplyIndex] = option;	// to track player's conversation history
 
 		if (option == answer [playerReplyIndex]) {
 			score += 1;

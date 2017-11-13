@@ -134,7 +134,7 @@ public class MinigameOne : MonoBehaviour {
 	void GenerateComboString(int comboStringLength) {
 		// Reset the combo key feedback view
 		m_FeedbackText.text = "Press the keys from left to right to get to the empty seat!";
-		m_ComboKeysBG.color = Color.white * 0.6f;
+		m_ComboKeysBG.color = Color.white * 220f/255f;
 
 		comboString = "";		// we reset the combo string first, in case the player fails any previous attempts
 

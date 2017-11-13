@@ -9,6 +9,7 @@ public class TrainFaultCutscene : MonoBehaviour {
 	public GameObject m_Train;
 	public GameObject m_SeatingPassengers;
 	public GameObject m_StandingPassengers;
+	public Animator[] m_StandingPassengerAnimators;
 	public GameObject m_Player;
 	public GameObject m_Bag;
 	public GameObject m_TrainAnnouncement;
@@ -60,6 +61,10 @@ public class TrainFaultCutscene : MonoBehaviour {
 		m_StandingPassengers.SetActive (true);
 
 		yield return new WaitForSeconds (m_TimeBeforePassengersExit);
+
+		for (int i = 0; i < m_StandingPassengerAnimators.Length; i++) {
+			m_StandingPassengerAnimators [i].SetTrigger ("Leave");
+		}
 
 		m_AudioSource.PlayOneShot (m_PassengerFootstepsClip);
 		iTween.MoveTo (m_StandingPassengers, iTween.Hash ("position", m_PassengersExitToPosition, "time", m_PassengersExitDuration, "easetype", iTween.EaseType.linear));

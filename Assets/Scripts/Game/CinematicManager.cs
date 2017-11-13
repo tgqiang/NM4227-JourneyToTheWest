@@ -33,24 +33,33 @@ public class CinematicManager : MonoBehaviour {
 	}
 
 	
-	public void DeactivateCinematicEffect () {
-		StartCoroutine (DeactivateCinematicEffectCoroutine ());
+	public void DeactivateCinematicEffect (bool hasDialogue = false) {
+		StartCoroutine (DeactivateCinematicEffectCoroutine (hasDialogue));
 	}
 
 
-	public IEnumerator ActivateCinematicEffectCoroutine() {
+	public IEnumerator ActivateCinematicEffectCoroutine(bool hasDialogue = false) {
 		m_PhoneScript.SetIsCutscenePlaying ();
 
 		iTween.MoveTo (m_TopBox, Vector2.zero, m_BoxMoveDuration);
-		iTween.MoveTo (m_BottomBox, Vector2.zero, m_BoxMoveDuration);
+
+		if (hasDialogue) {
+			iTween.MoveTo (m_BottomBox, Vector2.zero, m_BoxMoveDuration);
+		} else {
+			iTween.MoveTo (m_BottomBox, new Vector2(0f, -150f), m_BoxMoveDuration);
+		}
 
 		yield return new WaitForSeconds (m_BoxMoveDuration + 0.5f);
 	}
 
 
-	public IEnumerator DeactivateCinematicEffectCoroutine() {
+	public IEnumerator DeactivateCinematicEffectCoroutine(bool hasDialogue = false) {
 		iTween.MoveTo (m_TopBox, m_MovePosition, m_BoxMoveDuration);
-		iTween.MoveTo (m_BottomBox, -m_MovePosition, m_BoxMoveDuration);
+		if (hasDialogue) {
+			iTween.MoveTo (m_BottomBox, -m_MovePosition, m_BoxMoveDuration);
+		} else {
+			iTween.MoveTo (m_BottomBox, new Vector2(0f, -300f), m_BoxMoveDuration);
+		}
 
 		yield return new WaitForSeconds (m_BoxMoveDuration + 0.5f);
 

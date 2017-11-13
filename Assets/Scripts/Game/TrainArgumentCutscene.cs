@@ -52,13 +52,18 @@ public class TrainArgumentCutscene : MonoBehaviour {
 		yield return new WaitForSeconds (m_CameraFadeDuration);
 
 		iTween.MoveTo (m_ArguingPassenger, iTween.Hash ("position", m_ArguingPassengerMoveToPosition, "time", m_ArguingPassengerMoveToDuration, "easetype", iTween.EaseType.linear));
-		yield return new WaitForSeconds (m_ArguingPassengerMoveToDuration + 0.5f);
+		yield return new WaitForSeconds (m_ArguingPassengerMoveToDuration + 0.2f);
 
+		m_ArguingPassenger.GetComponent<Animator> ().SetTrigger ("Pause");
+		yield return new WaitForSeconds (0.3f);
+
+		m_ArguingPassenger.GetComponent<Animator> ().SetTrigger ("Swear");
 		m_ArguingPassenger.transform.Find ("Cursing").gameObject.SetActive (true);
 		m_PlayerAnimator.SetTrigger ("Confronted");
 		m_AudioSource.PlayOneShot (m_ManSwearingClip);
 		yield return new WaitForSeconds (m_CursingDuration);
 
+		m_ArguingPassenger.GetComponent<Animator> ().SetTrigger ("Pause");
 		m_ArguingPassenger.transform.Find ("Cursing").gameObject.SetActive (false);
 		yield return new WaitForSeconds (m_TimeDelayBeforePlayerEvictsFromSeat);
 

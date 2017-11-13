@@ -7,6 +7,7 @@ public class BGMManager : MonoBehaviour {
 	[Header("Ambient Sounds")]
 	public AudioClip m_TrainAmbientClip;
 	public AudioClip m_BusAmbientClip;
+	public AudioClip m_PlayerWalkingAmbientClip;
 	public AudioClip m_EndingSongClip;
 
 	public float m_AudioFadeTime;
@@ -33,6 +34,12 @@ public class BGMManager : MonoBehaviour {
 
 	public void PlayBusAmbient() {
 		m_AudioPlayer.clip = m_BusAmbientClip;
+		m_AudioPlayer.Play ();
+	}
+
+
+	public void PlayWalkingAmbient() {
+		m_AudioPlayer.clip = m_PlayerWalkingAmbientClip;
 		m_AudioPlayer.Play ();
 	}
 

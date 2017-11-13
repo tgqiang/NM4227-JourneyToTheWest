@@ -61,11 +61,19 @@ public class GameState : MonoBehaviour {
 	public GameObject m_Player;
 	public GameObject m_PlayerSpeechBubble;
 	public GameObject m_GirlfriendSpeechBubble;
-	public Vector2 m_PlayerMoveToPosition;
-	public float m_TimeDelayBeforePlayerMovement;
-	public float m_PlayerMoveToDuration;
 	public float m_TimeDelayBetweenDialogueSwitch;
 	public float m_DialogueSwapInterval;
+
+	[Header("Message Mural")]
+	public int m_MaxMessagesToDisplay;
+	public GameObject[] m_MessagePairs;
+	public GameObject m_PlayerMeetingGF;
+	public GameObject m_Girlfriend;
+	public Vector3 m_MessagePairMoveToPosition;
+	public float m_MessagePairMoveToDuration;
+	public Vector3 m_GFMoveToPosition;
+	public float m_GFMoveToDuration;
+	int numMessagesDisplayed = 0;
 
 	[Header("Credits Panel")]
 	public GameObject m_CreditsPanel;
@@ -120,6 +128,7 @@ public class GameState : MonoBehaviour {
 
 		if (m_MinigamesCleared == 3) {
 			m_PhoneScript.NotifyEndingReached ();
+			SetupMessageMural ();
 			StartCoroutine (ShowEndingCoroutine());
 		}
 	}
@@ -211,6 +220,33 @@ public class GameState : MonoBehaviour {
 	}
 
 
+	// In this implementation, we show a limit of "bad replies", up to m_MaxMessagesToDisplay.
+	void SetupMessageMural() {
+		string[] gfMessageStrings = m_PhoneScript.GFMessageStrings;
+		string[][] playerReplyStrings = m_PhoneScript.PlayerReplyStrings;
+		int[] answerIndices = m_PhoneScript.AnswerIndices;
+		int[] playerReplyIndices = m_PhoneScript.PlayerReplyIndices;
+
+		for (int i = 0; i < playerReplyIndices.Length; i++) {
+			// If the limit on number of messages to display has not been exceeded
+			if (numMessagesDisplayed < m_MaxMessagesToDisplay) {
+				// If player replied a particular message UNFAVORABLY, it will be shown on "message mural".
+				if (playerReplyIndices [i] != -1) {
+					if (playerReplyIndices [i] != answerIndices [i]) {
+						m_MessagePairs [i].transform.Find ("GFMessage").Find ("Text").gameObject.GetComponent<Text> ().text = gfMessageStrings [i];
+						m_MessagePairs [i].transform.Find ("PlayerMessage").Find ("Text").gameObject.GetComponent<Text> ().text = playerReplyStrings [i] [playerReplyIndices [i]];
+						m_MessagePairs [i].SetActive (true);
+
+						numMessagesDisplayed++;
+					}
+				}
+			} else {
+				break;
+			}
+		}
+	}
+
+
 	public void MoveToEndingAfterDialogue() {
 		StartCoroutine (ShowEndingTrainSceneCoroutine ());
 	}
@@ -247,7 +283,6 @@ public class GameState : MonoBehaviour {
 		yield return m_PreMinigameThreeCutscene.CutsceneCoroutine ();
 		yield return ExitTrainAndMoveToBusStopCoroutine ();
 		yield return BoardBusCoroutine ();
-		//yield return TriggerMessageFromGF ();
 	}
 
 
@@ -290,24 +325,37 @@ public class GameState : MonoBehaviour {
 
 	
 	IEnumerator ShowEndingCoroutine() {
-		m_BGMPlayer.StopPlayer ();
+		m_BGMPlayer.PlayWalkingAmbient ();
 
-		yield return m_CinematicScript.ActivateCinematicEffectCoroutine ();
+		yield return m_CinematicScript.ActivateCinematicEffectCoroutine (true);
 
 		m_HUD.SetActive (false);
 		m_GirlfriendMeetingPanel.SetActive (true);
+		m_Player.GetComponent<AudioSource> ().Play ();
+		m_Player.GetComponent<Animator> ().SetBool ("Walking", true);
+
+		// TODO: probably will need to find a way to loop the footsteps SFX, since a separate BGM will be playing alongside.
+		//m_AudioSource.PlayOneShot (m_PlayerFootstepsClip);
 
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
-		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
+		yield return new WaitForSeconds (m_CameraFadeDuration + 2f);
 
-		yield return new WaitForSeconds (m_TimeDelayBeforePlayerMovement);
+		for (int i = 0; i < numMessagesDisplayed; i++) {
+			iTween.MoveTo (m_MessagePairs[i], iTween.Hash ("position", m_MessagePairMoveToPosition, "time", m_MessagePairMoveToDuration, "easetype", iTween.EaseType.linear));
+			yield return new WaitForSeconds (m_MessagePairMoveToDuration + 1f);
+		}
 
-		m_AudioSource.PlayOneShot (m_PlayerFootstepsClip);
-		//iTween.MoveTo (m_Player, iTween.Hash ("position", m_PlayerMoveToPosition, "time", m_PlayerMoveToDuration, "easetype", iTween.EaseType.linear));
-		m_Player.GetComponent<Animator> ().SetBool ("Walking", true);
-		yield return new WaitForSeconds (m_PlayerMoveToDuration + .5f);
-		m_Player.GetComponent<Animator> ().SetBool ("Walking", false);
+		if (m_PhoneScript.Score == 0) {
+			yield return new WaitForSeconds ((m_MessagePairMoveToDuration + 1f) * m_MaxMessagesToDisplay);
+		}
 
+		iTween.MoveTo (m_Girlfriend, iTween.Hash ("position", m_GFMoveToPosition, "time", m_GFMoveToDuration, "easetype", iTween.EaseType.linear));
+		yield return new WaitForSeconds (m_GFMoveToDuration);
+
+		m_Player.GetComponent<AudioSource> ().Stop ();
+		m_Player.GetComponent<Animator> ().SetTrigger("MessagesStop");	// stop the player's walking
+
+		yield return new WaitForSeconds (1f);
 		yield return EmulateDialogueCoroutine ();
 	}
 
@@ -316,6 +364,8 @@ public class GameState : MonoBehaviour {
 		// GF speaks
 		if (m_PhoneScript.Score >= m_MinimumPassingScore) {
 			UpdateGFSpeechBubble ("I'm so happy to see you! Thank you for being such a great boyfriend baby :)");
+		} else if (m_PhoneScript.Score == 0) {
+			UpdateGFSpeechBubble ("You never replied me at all!!! What is wrong with you?");
 		} else {
 			UpdateGFSpeechBubble ("Your SMS replies were rather rude... I hope we are going to be alright together babe...");
 		}
@@ -328,7 +378,14 @@ public class GameState : MonoBehaviour {
 		yield return new WaitForSeconds (m_TimeDelayBetweenDialogueSwitch);
 
 		// GF speaks
-		UpdateGFSpeechBubble("Do you still love me?");
+		if (m_PhoneScript.Score >= m_MinimumPassingScore) {
+			UpdateGFSpeechBubble("Erm... do you... still love me...?");
+		} else if (m_PhoneScript.Score == 0) {
+			UpdateGFSpeechBubble ("Do you actually love me at all??");
+		} else {
+			UpdateGFSpeechBubble ("Do you really love me?");
+		}
+
 		m_AudioSource.PlayOneShot (m_GFDialogueClip);
 		m_GirlfriendSpeechBubble.SetActive (true);
 		yield return new WaitForSeconds (m_DialogueSwapInterval);
@@ -343,6 +400,7 @@ public class GameState : MonoBehaviour {
 
 	IEnumerator ShowEndingTrainSceneCoroutine() {
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
+		m_PlayerSpeechBubble.SetActive (false);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
 
 		VignetteModel.Settings vignetteSettings = m_PostProcessingProfile.vignette.settings;
