@@ -51,9 +51,11 @@ public class TrainArgumentCutscene : MonoBehaviour {
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
 		yield return new WaitForSeconds (m_CameraFadeDuration);
 
+		m_ArguingPassenger.GetComponent<AudioSource> ().Play ();
 		iTween.MoveTo (m_ArguingPassenger, iTween.Hash ("position", m_ArguingPassengerMoveToPosition, "time", m_ArguingPassengerMoveToDuration, "easetype", iTween.EaseType.linear));
 		yield return new WaitForSeconds (m_ArguingPassengerMoveToDuration + 0.2f);
 
+		m_ArguingPassenger.GetComponent<AudioSource> ().Stop ();
 		m_ArguingPassenger.GetComponent<Animator> ().SetTrigger ("Pause");
 		yield return new WaitForSeconds (0.3f);
 

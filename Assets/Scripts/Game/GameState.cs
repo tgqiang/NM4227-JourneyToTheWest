@@ -77,7 +77,9 @@ public class GameState : MonoBehaviour {
 
 	[Header("Credits Panel")]
 	public GameObject m_CreditsPanel;
-	public float m_CreditsPersistenceDuration;
+	public GameObject m_CreditsSlideInText;
+	public Vector3 m_CreditsSlideToPosition;
+	public float m_CreditsSlideInDuration;
 
 	[Header("Audio")]
 	public BGMManager m_BGMPlayer;
@@ -90,6 +92,8 @@ public class GameState : MonoBehaviour {
 
 	void Awake() {
 		m_AudioSource = EventSystem.current.GetComponent<AudioSource> ();
+		// Debug
+		//iTween.MoveTo (m_CreditsSlideInText, iTween.Hash ("position", m_CreditsSlideToPosition, "time", m_CreditsSlideInDuration, "easetype", iTween.EaseType.linear));
 	}
 
 
@@ -128,7 +132,6 @@ public class GameState : MonoBehaviour {
 
 		if (m_MinigamesCleared == 3) {
 			m_PhoneScript.NotifyEndingReached ();
-			SetupMessageMural ();
 			StartCoroutine (ShowEndingCoroutine());
 		}
 	}
@@ -233,9 +236,8 @@ public class GameState : MonoBehaviour {
 				// If player replied a particular message UNFAVORABLY, it will be shown on "message mural".
 				if (playerReplyIndices [i] != -1) {
 					if (playerReplyIndices [i] != answerIndices [i]) {
-						m_MessagePairs [i].transform.Find ("GFMessage").Find ("Text").gameObject.GetComponent<Text> ().text = gfMessageStrings [i];
-						m_MessagePairs [i].transform.Find ("PlayerMessage").Find ("Text").gameObject.GetComponent<Text> ().text = playerReplyStrings [i] [playerReplyIndices [i]];
-						m_MessagePairs [i].SetActive (true);
+						m_MessagePairs [numMessagesDisplayed].transform.Find ("GFMessage").Find ("Text").gameObject.GetComponent<Text> ().text = gfMessageStrings [i];
+						m_MessagePairs [numMessagesDisplayed].transform.Find ("PlayerMessage").Find ("Text").gameObject.GetComponent<Text> ().text = playerReplyStrings [i] [playerReplyIndices [i]];
 
 						numMessagesDisplayed++;
 					}
@@ -331,6 +333,8 @@ public class GameState : MonoBehaviour {
 
 		m_HUD.SetActive (false);
 		m_GirlfriendMeetingPanel.SetActive (true);
+		SetupMessageMural ();
+
 		m_Player.GetComponent<AudioSource> ().Play ();
 		m_Player.GetComponent<Animator> ().SetBool ("Walking", true);
 
@@ -438,7 +442,8 @@ public class GameState : MonoBehaviour {
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 1.5f);
 
-		yield return new WaitForSeconds (m_CreditsPersistenceDuration);
+		iTween.MoveTo (m_CreditsSlideInText, iTween.Hash ("position", m_CreditsSlideToPosition, "time", m_CreditsSlideInDuration, "easetype", iTween.EaseType.linear));
+		yield return new WaitForSeconds (m_CreditsSlideInDuration + 1f);
 
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
