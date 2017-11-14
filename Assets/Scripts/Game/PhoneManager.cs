@@ -21,6 +21,14 @@ public class PhoneManager : MonoBehaviour {
 	public GameObject m_PlayerReplyListRoot;
 	public GameObject m_PlayerReplyPrefab;
 
+	bool hasAtLeastTwoReplies;
+
+	public bool HasAtLeastTwoReplies {
+		get {
+			return hasAtLeastTwoReplies;
+		}
+	}
+
 	int[] answer = {0, 1, 0, 0, 0, 0, 1, 0, 2, 2, 1, 1};
 	int[] playerReplyIndices = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 	int score = 0;
@@ -343,6 +351,9 @@ public class PhoneManager : MonoBehaviour {
 		numResponses += 1;
 
 		//Debug.Log ("Number of replies so far: " + numResponses);
+		if (numResponses >= 2) {
+			hasAtLeastTwoReplies = true;
+		}
 
 		// Invoke this to reposition all message elements
 		RepositionMessagesInScreen ();

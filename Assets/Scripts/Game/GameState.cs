@@ -230,20 +230,22 @@ public class GameState : MonoBehaviour {
 		int[] answerIndices = m_PhoneScript.AnswerIndices;
 		int[] playerReplyIndices = m_PhoneScript.PlayerReplyIndices;
 
-		for (int i = 0; i < playerReplyIndices.Length; i++) {
-			// If the limit on number of messages to display has not been exceeded
-			if (numMessagesDisplayed < m_MaxMessagesToDisplay) {
-				// If player replied a particular message UNFAVORABLY, it will be shown on "message mural".
-				if (playerReplyIndices [i] != -1) {
-					if (playerReplyIndices [i] != answerIndices [i]) {
-						m_MessagePairs [numMessagesDisplayed].transform.Find ("GFMessage").Find ("Text").gameObject.GetComponent<Text> ().text = gfMessageStrings [i];
-						m_MessagePairs [numMessagesDisplayed].transform.Find ("PlayerMessage").Find ("Text").gameObject.GetComponent<Text> ().text = playerReplyStrings [i] [playerReplyIndices [i]];
+		if (m_PhoneScript.HasAtLeastTwoReplies) {
+			for (int i = 0; i < playerReplyIndices.Length; i++) {
+				// If the limit on number of messages to display has not been exceeded
+				if (numMessagesDisplayed < m_MaxMessagesToDisplay) {
+					// If player replied a particular message UNFAVORABLY, it will be shown on "message mural".
+					if (playerReplyIndices [i] != -1) {
+						if (playerReplyIndices [i] != answerIndices [i]) {
+							m_MessagePairs [numMessagesDisplayed].transform.Find ("GFMessage").Find ("Text").gameObject.GetComponent<Text> ().text = gfMessageStrings [i];
+							m_MessagePairs [numMessagesDisplayed].transform.Find ("PlayerMessage").Find ("Text").gameObject.GetComponent<Text> ().text = playerReplyStrings [i] [playerReplyIndices [i]];
 
-						numMessagesDisplayed++;
+							numMessagesDisplayed++;
+						}
 					}
+				} else {
+					break;
 				}
-			} else {
-				break;
 			}
 		}
 	}
@@ -327,7 +329,7 @@ public class GameState : MonoBehaviour {
 
 	
 	IEnumerator ShowEndingCoroutine() {
-		m_BGMPlayer.PlayWalkingAmbient ();
+		m_BGMPlayer.PlayWalkingAmbient (m_PhoneScript.Score);
 
 		yield return m_CinematicScript.ActivateCinematicEffectCoroutine (true);
 
@@ -346,11 +348,13 @@ public class GameState : MonoBehaviour {
 
 		for (int i = 0; i < numMessagesDisplayed; i++) {
 			iTween.MoveTo (m_MessagePairs[i], iTween.Hash ("position", m_MessagePairMoveToPosition, "time", m_MessagePairMoveToDuration, "easetype", iTween.EaseType.linear));
-			yield return new WaitForSeconds (m_MessagePairMoveToDuration + 1f);
+			yield return new WaitForSeconds (m_MessagePairMoveToDuration / 2f);
 		}
 
-		if (m_PhoneScript.Score == 0) {
-			yield return new WaitForSeconds ((m_MessagePairMoveToDuration + 1f) * m_MaxMessagesToDisplay);
+		if (!m_PhoneScript.HasAtLeastTwoReplies) {
+			yield return new WaitForSeconds ((m_MessagePairMoveToDuration / 2f) * (m_MaxMessagesToDisplay + 1));
+		} else {
+			yield return new WaitForSeconds (m_MessagePairMoveToDuration / 2f);
 		}
 
 		iTween.MoveTo (m_Girlfriend, iTween.Hash ("position", m_GFMoveToPosition, "time", m_GFMoveToDuration, "easetype", iTween.EaseType.linear));
@@ -367,11 +371,11 @@ public class GameState : MonoBehaviour {
 	IEnumerator EmulateDialogueCoroutine() {
 		// GF speaks
 		if (m_PhoneScript.Score >= m_MinimumPassingScore) {
-			UpdateGFSpeechBubble ("I'm so happy to see you! Thank you for being such a great boyfriend baby :)");
-		} else if (m_PhoneScript.Score == 0) {
-			UpdateGFSpeechBubble ("You never replied me at all!!! What is wrong with you?");
+			UpdateGFSpeechBubble ("Peifen: \"I'm so happy to see you! Thank you for being such a great boyfriend baby :)\"");
+		} else if (!m_PhoneScript.HasAtLeastTwoReplies) {
+			UpdateGFSpeechBubble ("Peifen: \"You never replied me at all!!! What is wrong with you?\"");
 		} else {
-			UpdateGFSpeechBubble ("Your SMS replies were rather rude... I hope we are going to be alright together babe...");
+			UpdateGFSpeechBubble ("Peifen: \"Your SMS replies were rather rude... I hope we are going to be alright together babe...\"");
 		}
 
 		m_AudioSource.PlayOneShot (m_GFDialogueClip);
@@ -383,11 +387,11 @@ public class GameState : MonoBehaviour {
 
 		// GF speaks
 		if (m_PhoneScript.Score >= m_MinimumPassingScore) {
-			UpdateGFSpeechBubble("Erm... do you... still love me...?");
+			UpdateGFSpeechBubble("Peifen: \"Erm... do you... still love me...?\"");
 		} else if (m_PhoneScript.Score == 0) {
-			UpdateGFSpeechBubble ("Do you actually love me at all??");
+			UpdateGFSpeechBubble ("Peifen: \"Do you actually love me at all??\"");
 		} else {
-			UpdateGFSpeechBubble ("Do you really love me?");
+			UpdateGFSpeechBubble ("Peifen: \"Do you really love me?\"");
 		}
 
 		m_AudioSource.PlayOneShot (m_GFDialogueClip);
@@ -424,23 +428,25 @@ public class GameState : MonoBehaviour {
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
 		yield return new WaitForSeconds(m_CameraFadeDuration + 2f);
 
-		m_CinematicScript.ShowNextButton (MoveToCredits);
+		//m_CinematicScript.ShowNextButton (MoveToCredits);
+		yield return new WaitForSeconds(3f);
+		yield return ShowCreditsCoroutine();
 	}
 
 
 	IEnumerator ShowCreditsCoroutine() {
-		yield return m_CinematicScript.DeactivateCinematicEffectCoroutine ();
+		//yield return m_CinematicScript.DeactivateCinematicEffectCoroutine ();
 
-		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
-		GrainModel grainModel = m_PostProcessingProfile.grain;
-		grainModel.enabled = false;
+		//iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
+		//GrainModel grainModel = m_PostProcessingProfile.grain;
+		//grainModel.enabled = false;
 
-		yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
+		//yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
 
 		m_CreditsPanel.SetActive (true);
 
-		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
-		yield return new WaitForSeconds(m_CameraFadeDuration + 1.5f);
+		//iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
+		//yield return new WaitForSeconds(m_CameraFadeDuration + 1.5f);
 
 		iTween.MoveTo (m_CreditsSlideInText, iTween.Hash ("position", m_CreditsSlideToPosition, "time", m_CreditsSlideInDuration, "easetype", iTween.EaseType.linear));
 		yield return new WaitForSeconds (m_CreditsSlideInDuration + 1f);

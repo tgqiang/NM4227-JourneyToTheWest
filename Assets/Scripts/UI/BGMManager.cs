@@ -6,10 +6,16 @@ public class BGMManager : MonoBehaviour {
 
 	[Header("Ambient Sounds")]
 	public AudioClip m_TrainAmbientClip;
+	public AudioClip m_BusStopAmbientClip;
 	public AudioClip m_BusAmbientClip;
-	public AudioClip m_PlayerWalkingAmbientClip;
+	public AudioClip m_PerfectEndingWalkingClip;
+	public AudioClip m_NeutralEndingWalkingClip;
+	public AudioClip m_BadEndingWalkingClip;
+	public AudioClip m_WorstEndingWalkingClip;
 	public AudioClip m_EndingSongClip;
 
+	public PhoneManager m_PhoneScript;
+	public GameState m_GameState;
 	public float m_AudioFadeTime;
 	public AudioSource m_IntroSongPlayer;
 
@@ -32,14 +38,29 @@ public class BGMManager : MonoBehaviour {
 	}
 
 
+	public void PlayBusStopAmbient() {
+		m_AudioPlayer.clip = m_BusStopAmbientClip;
+		m_AudioPlayer.Play ();
+	}
+
+
 	public void PlayBusAmbient() {
 		m_AudioPlayer.clip = m_BusAmbientClip;
 		m_AudioPlayer.Play ();
 	}
 
 
-	public void PlayWalkingAmbient() {
-		m_AudioPlayer.clip = m_PlayerWalkingAmbientClip;
+	public void PlayWalkingAmbient(int score) {
+		if (score == m_PhoneScript.m_MaxResponsesNeeded) {
+			m_AudioPlayer.clip = m_PerfectEndingWalkingClip;
+		} else if (!m_PhoneScript.HasAtLeastTwoReplies) {
+			m_AudioPlayer.clip = m_WorstEndingWalkingClip;
+		} else if (score >= m_GameState.m_MinimumPassingScore) {
+			m_AudioPlayer.clip = m_NeutralEndingWalkingClip;
+		} else {
+			m_AudioPlayer.clip = m_BadEndingWalkingClip;
+		}
+
 		m_AudioPlayer.Play ();
 	}
 

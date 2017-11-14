@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3459,7 +3459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5349,7 +5349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &422065124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5982,7 +5982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8623,7 +8623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8883,7 +8883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 799.9998, y: 275}
+  m_AnchoredPosition: {x: 799.9999, y: 275}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0, y: 0}
 --- !u!95 &730089825
@@ -10165,7 +10165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10934,7 +10934,7 @@ RectTransform:
   - {fileID: 25990559}
   - {fileID: 908216019}
   m_Father: {fileID: 1862564017}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11110,7 +11110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11912,7 +11912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -549.9995, y: 290}
+  m_AnchoredPosition: {x: -549.9996, y: 290}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &938078778
@@ -14225,7 +14225,7 @@ RectTransform:
   - {fileID: 2026116566}
   - {fileID: 422065124}
   m_Father: {fileID: 1862564017}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14244,14 +14244,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e313d1137eb25ce4b90cd0a13e9b0183, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15064,7 +15064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -155}
+  m_AnchoredPosition: {x: 0, y: -1080}
   m_SizeDelta: {x: 750, y: 1300}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1215192688
@@ -15683,9 +15683,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrainAmbientClip: {fileID: 8300000, guid: 353defc76253c0c42b473d39f7265de2, type: 3}
+  m_BusStopAmbientClip: {fileID: 0}
   m_BusAmbientClip: {fileID: 8300000, guid: 58a3bc8ebcdf7b442a73be1b11b21fb8, type: 3}
-  m_PlayerWalkingAmbientClip: {fileID: 0}
+  m_PerfectEndingWalkingClip: {fileID: 8300000, guid: 0b24cd45d12fadb499a76b75e17e3691,
+    type: 3}
+  m_NeutralEndingWalkingClip: {fileID: 8300000, guid: 909d383cf28071246b0e5063613d4198,
+    type: 3}
+  m_BadEndingWalkingClip: {fileID: 8300000, guid: 1714653845dcbf94f9b098c919bdf462,
+    type: 3}
+  m_WorstEndingWalkingClip: {fileID: 8300000, guid: 7323ec03a847d3445a4eb1548ee5dccb,
+    type: 3}
   m_EndingSongClip: {fileID: 8300000, guid: e7b4c1ed44427e3459f23a9feca71080, type: 3}
+  m_PhoneScript: {fileID: 1215192690}
+  m_GameState: {fileID: 2022848006}
   m_AudioFadeTime: 1
   m_IntroSongPlayer: {fileID: 2122037257}
 --- !u!1 &1238940694
@@ -16604,7 +16614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1325937792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17652,7 +17662,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1862564017}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -19270,7 +19280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19347,7 +19357,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300030, guid: c11966620489e254caf3d67b46c54e40, type: 3}
+  m_Sprite: {fileID: 21300008, guid: c11966620489e254caf3d67b46c54e40, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20041,7 +20051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1553865311
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22322,7 +22332,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1262184907
+  randomSeed: -305316467
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -26142,7 +26152,7 @@ MonoBehaviour:
   m_PhoneScript: {fileID: 1215192690}
   m_BagRotation: {x: 0, y: 0, z: 90}
   m_BagOpenSprite: {fileID: 21300002, guid: df73bf2fb7839cf47be33dfc75feb85e, type: 3}
-  m_PlayerNormalSprite: {fileID: 21300030, guid: c11966620489e254caf3d67b46c54e40,
+  m_PlayerNormalSprite: {fileID: 21300008, guid: c11966620489e254caf3d67b46c54e40,
     type: 3}
   m_PlayerSurprisedSprite: {fileID: 21300050, guid: c11966620489e254caf3d67b46c54e40,
     type: 3}
@@ -27409,9 +27419,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1098089098}
   - {fileID: 1387117032}
   - {fileID: 873317515}
+  - {fileID: 1098089098}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28608,7 +28618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -29436,8 +29446,8 @@ MonoBehaviour:
   m_GFMoveToDuration: 5
   m_CreditsPanel: {fileID: 1098089097}
   m_CreditsSlideInText: {fileID: 2026116565}
-  m_CreditsSlideToPosition: {x: -7600, y: 0, z: 0}
-  m_CreditsSlideInDuration: 20
+  m_CreditsSlideToPosition: {x: -17000, y: 100, z: 0}
+  m_CreditsSlideInDuration: 30
   m_BGMPlayer: {fileID: 1229227670}
   m_BusArrivalClip: {fileID: 8300000, guid: 39cdedea8607ad04cae570ec88536864, type: 3}
   m_PlayerFootstepsClip: {fileID: 8300000, guid: 0935c6225aab1d245aa575ac94f9bfe6,
@@ -29541,11 +29551,11 @@ RectTransform:
   m_Father: {fileID: 1098089098}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1919.9998, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1920, y: 100}
   m_SizeDelta: {x: 10000, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &2026116567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29578,8 +29588,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Producer: Yu Ki\t\t\t\t\tDesigner: Peggy\t\t\t\t\tAsset Designer: Sufyan\t\t\t\t\tProgrammer:
-    Guo Qiang\t\t\t\t\tTester: Charis"
+  m_Text: "Credits:\t\tProducer: Yu Ki\t\tDesigner: Peggy\t\tAsset Designer: Sufyan\t\tProgrammer:
+    Guo Qiang\t\tTester: Charis\t\tSounds: Freesound.org - peridactyloptrix, scooterjb,
+    pan14, urpederson, yonts, Dasgoat\t\tYouTube - Soundsrelax, Royalty King, Sound
+    Effects, Gaming Sound FX\t\tSoundBible\t\t\"Teller of the Tales\" by Kevin Macleod"
 --- !u!222 &2026116568
 CanvasRenderer:
   m_ObjectHideFlags: 0
