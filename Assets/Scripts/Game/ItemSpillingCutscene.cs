@@ -41,7 +41,7 @@ public class ItemSpillingCutscene : MonoBehaviour {
 		m_AudioSource.PlayOneShot (m_ZipperRipClip);
 		yield return new WaitForSeconds (1f);
 
-		m_Player.transform.localScale = new Vector3 (-1f, 1f, 1f);
+		//m_Player.transform.localScale = new Vector3 (-1f, 1f, 1f);
 		m_Player.GetComponent<Image> ().sprite = m_PlayerSurprisedSprite;
 		m_BagPivot.transform.Find ("Image").gameObject.GetComponent<Image> ().sprite = m_BagOpenSprite;
 		iTween.RotateTo (m_BagPivot, m_BagRotation, m_BagTiltDuration);
@@ -63,7 +63,7 @@ public class ItemSpillingCutscene : MonoBehaviour {
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
 		yield return new WaitForSeconds (m_CameraFadeDuration + 0.5f);
 
-		//(m_BagPivot.transform as RectTransform).rotation = Quaternion.Euler (Vector3.zero);
+		//m_Player.transform.localScale = Vector3.one;
 		m_Player.GetComponent<Image> ().sprite = m_PlayerNormalSprite;
 		m_CutscenePanel.SetActive (false);
 

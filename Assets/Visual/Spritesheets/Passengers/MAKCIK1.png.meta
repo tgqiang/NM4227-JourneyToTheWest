@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 83ce3d5657682f64fa4312b7260396f9
-timeCreated: 1510238355
+timeCreated: 1510831302
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -99,11 +99,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1208
-        width: 600
+        y: 1204
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -112,12 +112,12 @@ TextureImporter:
       name: MAKCIK1_1
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1208
-        width: 600
+        x: 300
+        y: 1204
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,11 +127,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 608
-        width: 600
+        y: 604
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,11 +141,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
-        width: 600
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: MAKCIK1_4
       rect:
         serializedVersion: 2
-        x: 600
-        y: 8
-        width: 600
+        x: 300
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: MAKCIK1_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 8
-        width: 600
+        x: 600
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: MAKCIK1_6
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 8
-        width: 600
+        x: 900
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: MAKCIK1_7
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 8
-        width: 600
+        x: 1203
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: MAKCIK1_8
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 8
-        width: 600
+        x: 1500
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: MAKCIK1_9
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 8
-        width: 600
+        x: 1800
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: MAKCIK1_10
       rect:
         serializedVersion: 2
-        x: 4200
-        y: 8
-        width: 600
+        x: 2100
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: MAKCIK1_11
       rect:
         serializedVersion: 2
-        x: 4800
-        y: 8
-        width: 600
+        x: 2400
+        y: 4
+        width: 300
         height: 600
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

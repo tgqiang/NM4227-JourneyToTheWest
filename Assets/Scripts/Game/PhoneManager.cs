@@ -249,23 +249,17 @@ public class PhoneManager : MonoBehaviour {
 
 
 	IEnumerator AnimatePhoneInterfaceCoroutine() {
+		if (numResponses == 1 && isCurrentlyAtTutorial) {
+			isCurrentlyAtTutorial = false;
+			m_PromptTexts.SetActive (false);
+		}
+
 		if (m_IsMobilePhoneActive) {
-
-			if (isCurrentlyAtTutorial) {
-				isCurrentlyAtTutorial = false;
-				m_PromptTexts.SetActive (false);
-			}
-
 			m_PhoneButton.GetComponent<Image> ().sprite = m_PhoneInactiveSprite;
 			(m_PhoneButton.transform as RectTransform).sizeDelta = m_PhoneInactiveButtonSize;
 			m_IsMobilePhoneActive = false;
 			iTween.MoveTo (m_PhoneInterface, m_InactivePosition, m_PhoneAnimationDuration);
 		} else {
-			
-			if (isCurrentlyAtTutorial) {
-				m_PromptTexts.SetActive (true);
-			}
-
 			m_PhoneButton.GetComponent<Image> ().sprite = m_PhoneActiveSprite;
 			(m_PhoneButton.transform as RectTransform).sizeDelta = m_PhoneActiveButtonSize;
 			m_IsMobilePhoneActive = true;
@@ -349,6 +343,10 @@ public class PhoneManager : MonoBehaviour {
 		totalMessageCount += 1;
 		playerReplyIndex += 1;
 		numResponses += 1;
+
+		if (numResponses == 1 && isCurrentlyAtTutorial) {
+			m_PromptTexts.SetActive (true);
+		}
 
 		//Debug.Log ("Number of replies so far: " + numResponses);
 		if (numResponses >= 2) {

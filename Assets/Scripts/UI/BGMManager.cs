@@ -65,6 +65,19 @@ public class BGMManager : MonoBehaviour {
 	}
 
 
+	public void FadeOutWalkingAmbient() {
+		StartCoroutine (FadeOutWalkingAmbientCoroutine ());
+	}
+
+
+	IEnumerator FadeOutWalkingAmbientCoroutine() {
+		iTween.AudioTo (m_AudioPlayer.gameObject, 0f, m_AudioPlayer.pitch, 2.5f);
+		yield return new WaitForSeconds (2.7f);
+		m_AudioPlayer.Stop ();
+		m_AudioPlayer.volume = 1f;
+	}
+
+
 	public void PlayEndingSong() {
 		m_AudioPlayer.clip = m_EndingSongClip;
 		m_AudioPlayer.Play ();

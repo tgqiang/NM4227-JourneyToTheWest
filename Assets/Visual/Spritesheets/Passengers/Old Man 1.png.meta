@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 15e4e6576cb7ec64d9a914965662917e
-timeCreated: 1510115767
+timeCreated: 1510836521
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -106,10 +106,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1800
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -118,12 +118,12 @@ TextureImporter:
       name: Old Man 1_1
       rect:
         serializedVersion: 2
-        x: 600
+        x: 300
         y: 1800
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,12 +132,12 @@ TextureImporter:
       name: Old Man 1_2
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 600
         y: 1800
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,12 +146,12 @@ TextureImporter:
       name: Old Man 1_3
       rect:
         serializedVersion: 2
-        x: 1800
+        x: 900
         y: 1800
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,12 +160,12 @@ TextureImporter:
       name: Old Man 1_4
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 1200
         y: 1800
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,10 +176,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1200
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,12 +188,12 @@ TextureImporter:
       name: Old Man 1_6
       rect:
         serializedVersion: 2
-        x: 600
+        x: 300
         y: 1200
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,10 +204,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 600
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,10 +218,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Old Man 1_9
       rect:
         serializedVersion: 2
-        x: 600
+        x: 300
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,12 +244,12 @@ TextureImporter:
       name: Old Man 1_10
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 600
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: Old Man 1_11
       rect:
         serializedVersion: 2
-        x: 1800
+        x: 900
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -272,12 +272,12 @@ TextureImporter:
       name: Old Man 1_12
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 1200
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,12 +286,12 @@ TextureImporter:
       name: Old Man 1_13
       rect:
         serializedVersion: 2
-        x: 3000
+        x: 1500
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -300,12 +300,12 @@ TextureImporter:
       name: Old Man 1_14
       rect:
         serializedVersion: 2
-        x: 3600
+        x: 1800
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -314,12 +314,12 @@ TextureImporter:
       name: Old Man 1_15
       rect:
         serializedVersion: 2
-        x: 4200
+        x: 2100
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,26 +328,12 @@ TextureImporter:
       name: Old Man 1_16
       rect:
         serializedVersion: 2
-        x: 4800
+        x: 2400
         y: 0
-        width: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Old Man 1_17
-      rect:
-        serializedVersion: 2
-        x: 5400
-        y: 0
-        width: 600
-        height: 600
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

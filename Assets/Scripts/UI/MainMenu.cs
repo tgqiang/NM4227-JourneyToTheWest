@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour {
 	[Header("Postprocessing Profile")]
 	public PostProcessingProfile m_PostProcessProfile;
 
+	[Header("Backgrounds")]
+	public Image m_StartingBackground;
+	public GameObject m_MRTBackground;
+
 	[Header("Menu Panels")]
 	public GameObject m_MainMenuPanel;
 	public GameObject m_InstructionPanel;
@@ -245,6 +249,8 @@ public class MainMenu : MonoBehaviour {
 	IEnumerator CameraFadeCoroutine() {
 		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
 		yield return new WaitForSeconds (m_CameraFadeDuration);
+		m_StartingBackground.enabled = false;
+		m_MRTBackground.SetActive (true);
 		m_TrainPanel.SetActive (false);
 		yield return m_CinematicScript.DeactivateCinematicEffectCoroutine ();
 		m_TrainHUD.SetActive (true);

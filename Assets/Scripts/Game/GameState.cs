@@ -11,6 +11,11 @@ public class GameState : MonoBehaviour {
 	[Header("Postprocessing Profile")]
 	public PostProcessingProfile m_PostProcessingProfile;
 
+	[Header("Backgrounds")]
+	public GameObject m_MRTBackground;
+	public GameObject m_BusBackground;
+	public GameObject m_WalkingBackground;
+
 	[Header("Game HUD")]
 	public GameObject m_HUD;
 	public GameObject m_TrainHUD;
@@ -132,6 +137,7 @@ public class GameState : MonoBehaviour {
 
 		if (m_MinigamesCleared == 3) {
 			m_PhoneScript.NotifyEndingReached ();
+			m_WalkingBackground.SetActive (true);
 			StartCoroutine (ShowEndingCoroutine());
 		}
 	}
@@ -164,11 +170,11 @@ public class GameState : MonoBehaviour {
 		// One message will also have been triggered during the bus ride. (Msg #10)
 		// Two messages will also have been triggered in minigame #3. (Msg #11, #12)
 
-		if (m_CurrentCheckpoint == 3) {
-			// We fire another message at Tanah Merah station (Msg #3)
+		if (m_CurrentCheckpoint == 2) {
+			// We fire another message at Simei station (Msg #3)
 			m_PhoneScript.ReceiveTextFromGF ();
-		} else if (m_CurrentCheckpoint == 5) {
-			// We fire another message at Kembangan station (Msg #4)
+		} else if (m_CurrentCheckpoint == 4) {
+			// We fire another message at Bedok station (Msg #4)
 			m_PhoneScript.ReceiveTextFromGF ();
 		} else if (m_CurrentCheckpoint == 12) {
 			// We fire another message at City Hall station (Msg #6)
@@ -296,6 +302,7 @@ public class GameState : MonoBehaviour {
 
 		m_TrainSetting.SetActive (false);
 		m_TrainHUD.SetActive (false);
+		m_BusBackground.SetActive (true);
 		m_BusBoardingPanel.SetActive (true);
 
 		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
@@ -357,9 +364,11 @@ public class GameState : MonoBehaviour {
 			yield return new WaitForSeconds (m_MessagePairMoveToDuration / 2f);
 		}
 
+		m_BGMPlayer.FadeOutWalkingAmbient ();
 		iTween.MoveTo (m_Girlfriend, iTween.Hash ("position", m_GFMoveToPosition, "time", m_GFMoveToDuration, "easetype", iTween.EaseType.linear));
 		yield return new WaitForSeconds (m_GFMoveToDuration);
 
+		m_WalkingBackground.GetComponent<Animator> ().enabled = false;
 		m_Player.GetComponent<AudioSource> ().Stop ();
 		m_Player.GetComponent<Animator> ().SetTrigger("MessagesStop");	// stop the player's walking
 
@@ -407,9 +416,9 @@ public class GameState : MonoBehaviour {
 
 
 	IEnumerator ShowEndingTrainSceneCoroutine() {
-		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration);
+		iTween.FadeTo (m_CameraFadePanel, 1f, m_CameraFadeDuration + 3.5f);
 		m_PlayerSpeechBubble.SetActive (false);
-		yield return new WaitForSeconds(m_CameraFadeDuration + 0.5f);
+		yield return new WaitForSeconds(m_CameraFadeDuration + 4f);
 
 		VignetteModel.Settings vignetteSettings = m_PostProcessingProfile.vignette.settings;
 		vignetteSettings.intensity = 0f;
@@ -425,8 +434,8 @@ public class GameState : MonoBehaviour {
 		m_EndingPanel.SetActive (true);
 		m_BGMPlayer.PlayEndingSong ();
 
-		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration);
-		yield return new WaitForSeconds(m_CameraFadeDuration + 2f);
+		iTween.FadeTo (m_CameraFadePanel, 0f, m_CameraFadeDuration + 2f);
+		yield return new WaitForSeconds(m_CameraFadeDuration + 4f);
 
 		//m_CinematicScript.ShowNextButton (MoveToCredits);
 		yield return new WaitForSeconds(3f);

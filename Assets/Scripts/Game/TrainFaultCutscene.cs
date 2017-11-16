@@ -16,6 +16,9 @@ public class TrainFaultCutscene : MonoBehaviour {
 	public GameObject m_CameraFadePanel;
 	public CinematicManager m_CinematicScript;
 
+	[Header("Backgrounds")]
+	public GameObject m_MRTBackground;
+
 	[Header("Transition Attributes")]
 	public Vector3 m_TrainShakePosition;
 	public float m_TrainShakeDuration;
@@ -49,10 +52,11 @@ public class TrainFaultCutscene : MonoBehaviour {
 		m_AudioSource.PlayOneShot (m_TrainFaultTriggerClip);
 
 		iTween.ShakePosition (m_Train, m_TrainShakePosition, m_TrainShakeDuration);
-		yield return new WaitForSeconds (m_TrainShakeDuration + 0.8f);
+		yield return new WaitForSeconds (m_TrainShakeDuration);
+		m_MRTBackground.GetComponent<Animator> ().enabled = false;
+		yield return new WaitForSeconds (0.8f);
 
 		m_AudioSource.PlayOneShot (m_TrainAnnoucementClip);
-		//m_TrainAnnouncement.SetActive (true);		NOTE: probably don't want to show the announcement since the texts don't match?
 		yield return new WaitForSeconds (m_TrainAnnouncementDuration);
 		yield return new WaitForSeconds (m_TimeBeforePassengersStandUp);
 

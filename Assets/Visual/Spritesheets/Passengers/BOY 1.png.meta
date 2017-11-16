@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: af411b07b0245084097151909f057e2c
-timeCreated: 1510238179
+timeCreated: 1510836227
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -100,11 +100,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1208
-        width: 600
+        y: 1200
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,12 +113,12 @@ TextureImporter:
       name: BOY 1_1
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1208
-        width: 600
+        x: 300
+        y: 1200
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,11 +128,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 608
-        width: 600
+        y: 600
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,11 +142,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
-        width: 600
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: BOY 1_4
       rect:
         serializedVersion: 2
-        x: 600
-        y: 8
-        width: 600
+        x: 300
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: BOY 1_5
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 8
-        width: 600
+        x: 600
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: BOY 1_6
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 8
-        width: 600
+        x: 900
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: BOY 1_7
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 8
-        width: 600
+        x: 1200
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: BOY 1_8
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 8
-        width: 600
+        x: 1500
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: BOY 1_9
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 8
-        width: 600
+        x: 1800
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: BOY 1_10
       rect:
         serializedVersion: 2
-        x: 4200
-        y: 8
-        width: 600
+        x: 2100
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: BOY 1_11
       rect:
         serializedVersion: 2
-        x: 4800
-        y: 8
-        width: 600
+        x: 2400
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: BOY 1_12
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 8
-        width: 600
+        x: 2700
+        y: 0
+        width: 300
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
